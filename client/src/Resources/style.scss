@@ -788,6 +788,27 @@ body {
                             }
 
                             &.btn {
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-evenly;
+                                span{
+                                    background: $grey;
+                                    border-radius: 50%;
+                                    width: 2rem;
+                                    height: 2rem;
+                                    color: $white;
+                                    font-weight: bold;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    border: 2px solid $grey;
+                                    transition: 0.2s ease-in-out;
+                                    &:hover {
+                                        transform: scale(0.9);
+                                        background: none;
+                                        color: $grey;
+                                    }
+                                }
                                 .cart_remove_btn {
                                     width: 8rem;
                                     height: 3rem;

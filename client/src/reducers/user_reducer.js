@@ -8,11 +8,23 @@ import {
     REMOVE_CART_ITEM_USER,
     ON_SUCCESS_BUY_USER,
     UPDATE_USER_INFO_DATA,
-    CLEAR_UPDATE_USER_INFO_DATA
+    CLEAR_UPDATE_USER_INFO_DATA,
+    INCREASE_CART_ITEM,
+    DECREASE_CART_ITEM
 } from '../actions/types';
 
 export default function(state={}, action){
     switch(action.type){
+        case DECREASE_CART_ITEM:
+            return {...state, userData:{
+                ...state.userData,
+                cart: action.payload
+            }}
+        case INCREASE_CART_ITEM:
+            return {...state, userData:{
+                ...state.userData,
+                cart: action.payload
+            }}
         case CLEAR_UPDATE_USER_INFO_DATA:
             return { ...state, updateUser: action.payload}
         case UPDATE_USER_INFO_DATA:

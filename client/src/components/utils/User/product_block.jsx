@@ -2,7 +2,7 @@ import React from 'react';
 
 import Pizza from '../../../Resources/images/pizza.png';
 
-const UserProductBlock = ({products, removeItem}) => {
+const UserProductBlock = ({products, removeItem, increseItem, decreseItem}) => {
     
     const renderItems = () =>(
         products.cartDetail ?
@@ -26,9 +26,11 @@ const UserProductBlock = ({products, removeItem}) => {
                         <p>{product.price} $</p>
                     </div>
                     <div className="item btn">
+                        <span onClick={()=>decreseItem(product._id)}>-</span>
                         <div className="cart_remove_btn" onClick={()=>removeItem(product._id)}>
                             Remove
                         </div>
+                        <span onClick={()=>increseItem(product._id)}>+</span>
                     </div>
                 </div>
             ))

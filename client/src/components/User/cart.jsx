@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import UserLayout from '../../hoc/user';
 import UserProductBlock from '../utils/User/product_block';
 import { addCheckout, clearCheckout } from '../../actions/payement_actions';
-import { getCartItems, removeCartItem, onSuccessBuy } from '../../actions/user_actions';
+import { getCartItems, removeCartItem, onSuccessBuy, decreaseCartItem, addToCart } from '../../actions/user_actions';
 import FormField from '../utils/form/formFields';
 import { update, generateData, isFormValid, resetFields } from '../utils/form/formActions';
 
@@ -232,6 +232,29 @@ class UserCart extends Component {
         })
     }
 
+    increseItem = (id) => {
+        this.props.dispatch(addToCart(id));
+        window.location.reload();
+    }
+
+    decreseItem = (id) => {
+        this.props.user.cartDetail.map(product =>{
+            if(product.quantity <= 1){
+                this.props.dispatch(removeCartItem(id)).then(() => {
+                    if (this.props.user.cartDetail.length <= 0) {
+                        this.setState({
+                            showTotal: false
+                        })
+                    } else {
+                        this.calculateTotal(this.props.user.cartDetail)
+                    }
+                });
+            }
+        })
+        this.props.dispatch(decreaseCartItem(id));
+        window.location.reload();
+    }
+
     render() {
         return (
             <UserLayout>
@@ -242,6 +265,8 @@ class UserCart extends Component {
                             products={this.props.user}
                             type="cart"
                             removeItem={(id) => this.removeFromCart(id)}
+                            increseItem={(id) => this.increseItem(id)}
+                            decreseItem={(id) => this.decreseItem(id)}
                         />
                         {
                             this.state.showTotal ?

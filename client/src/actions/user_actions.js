@@ -10,7 +10,9 @@ import {
     REMOVE_CART_ITEM_USER,
     ON_SUCCESS_BUY_USER,
     UPDATE_USER_INFO_DATA,
-    CLEAR_UPDATE_USER_INFO_DATA
+    CLEAR_UPDATE_USER_INFO_DATA,
+    INCREASE_CART_ITEM,
+    DECREASE_CART_ITEM
 } from './types';
 
 import { USER_SERVER } from '../components/utils/misc';
@@ -131,5 +133,23 @@ export function clearUpdateUser(){
     return{
         type: CLEAR_UPDATE_USER_INFO_DATA,
         payload: ''
+    }
+}
+
+export function increaseCartItem(_id){
+    const request = axios.post(`${USER_SERVER}/increaseCartItem?productId=${_id}`)
+    .then(response=>response.data)
+    return{
+        type: INCREASE_CART_ITEM,
+        payload: request
+    }
+}
+
+export function decreaseCartItem(_id){
+    const request = axios.post(`${USER_SERVER}/decreaseCartItem?productId=${_id}`)
+    .then(response=>response.data)
+    return{
+        type: DECREASE_CART_ITEM,
+        payload: request
     }
 }

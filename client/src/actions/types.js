@@ -8,6 +8,8 @@ export const REMOVE_CART_ITEM_USER = 'remove_cart_item_user';
 export const ON_SUCCESS_BUY_USER = 'on_success_buy_user';
 export const UPDATE_USER_INFO_DATA = 'update_user_info_data';
 export const CLEAR_UPDATE_USER_INFO_DATA = 'clear_update_user_info_data';
+export const INCREASE_CART_ITEM = 'increase_cart_item';
+export const DECREASE_CART_ITEM = 'decrease_cart_item';
 
 export const GET_PRODUCTS = 'get_products';
 export const ADD_PRODUCTS = 'add_product';

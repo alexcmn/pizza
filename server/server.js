@@ -208,6 +208,20 @@ app.get('/api/users/removeFromCart', auth, (req, res)=>{
     )
 })
 
+app.post('/api/users/decreaseCartItem',auth,(req, res)=>{
+    User.findOne({_id: req.user._id}, (err, doc)=>{
+        User.findOneAndUpdate(
+            {_id: req.user._id, "cart.id": mongoose.Types.ObjectId(req.query.productId)},
+            {$inc: {"cart.$.quantity": -1} },
+            { new: true },
+            ()=>{
+                if(err) return res.json({ success: false, err});
+                res.status(200).json(doc.cart)
+            }
+        );
+    })
+})
+
 app.post('/api/users/successBuy',auth,(req, res)=>{
     let history = [];
 
