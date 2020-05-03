@@ -19,7 +19,9 @@ class Card extends Component {
                 DialogOpen: true
             })
         } else {
-            console.log('You need to sign in first')
+            this.setState({
+                DialogOpen: true
+            })
         }
     }
 
@@ -46,19 +48,30 @@ class Card extends Component {
                     </div>
                 </div>
                 {
-                    this.state.DialogOpen ?
-                        <Dialog open={this.state.DialogOpen}>
-                            <div className="dialog_alert cart_add_modal">
-                                <h1>Congratulations</h1>
-                                <p> You have successfuly added product to cart</p>
-                                <div className="bottom_btn">
-                                    <Link to="/user/cart">View Cart</Link>
-                                    <button onClick={this.closeModal}>Continue shoping</button>
+                    this.props.user.userData.isAuth ?
+                        this.state.DialogOpen ?
+                            <Dialog open={this.state.DialogOpen}>
+                                <div className="dialog_alert cart_add_modal">
+                                    <h1>Congratulations</h1>
+                                    <p> You have successfuly added product to cart</p>
+                                    <div className="bottom_btn">
+                                        <Link to="/user/cart">View Cart</Link>
+                                        <button onClick={this.closeModal}>Continue shoping</button>
+                                    </div>
                                 </div>
+                            </Dialog>
+                            : null
+                    :
+                    <Dialog open={this.state.DialogOpen}>
+                        <div className="dialog_alert cart_add_modal">
+                            <h1>Sorry</h1>
+                            <p> You have to log in first before adding to cart!</p>
+                            <div className="bottom_btn">
+                                <Link to="/register_login">Log In</Link>
+                                <button onClick={this.closeModal}>Close</button>
                             </div>
-                        </Dialog>
-                        : null
-
+                        </div>
+                    </Dialog>
                 }
             </>
         );
