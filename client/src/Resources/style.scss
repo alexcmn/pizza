@@ -63,6 +63,38 @@ $f2: 'Monoton';
     p {
         color: $grey;
     }
+    &.cart_add_modal{
+        .bottom_btn{
+            width: 100%;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            a{
+                border: 2px solid $Dorange;
+                padding: 10px 20px;
+                border-radius: 10px;
+                color: $Dorange;
+                transition: 0.2s ease-in-out;
+                &:hover{
+                    background: $Dorange;
+                    color: $white;
+                }
+            }
+            button{
+                border: 2px solid $grey;
+                background: $grey;
+                padding: 10px 20px;
+                border-radius: 10px;
+                color: $white;
+                transition: 0.2s ease-in-out;
+                &:hover{
+                    background: none;
+                    color: $grey;
+                }
+            }
+        }
+    }
 }
 
 .main_loader {

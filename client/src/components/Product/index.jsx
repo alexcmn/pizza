@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Dialog from '@material-ui/core/Dialog';
+import { Link } from 'react-router-dom';
 
 import { getProductDetail, clearProductDetail } from '../../actions/product_actions';
 import { addToCart } from '../../actions/user_actions';
@@ -8,7 +10,9 @@ import ProductInfo from './product_info';
 
 class ProductPage extends Component {
     
-    state = {  }
+    state = {
+        DialogOpen: false
+    }
     
     componentDidMount(){
         const id = this.props.match.params.id;
@@ -24,7 +28,16 @@ class ProductPage extends Component {
     }
 
     addToCartHandler = (id) =>{
-        this.props.dispatch(addToCart(id))
+        this.props.dispatch(addToCart(id));
+        this.setState({
+            DialogOpen: true
+        })
+    }
+
+    closeModal = () =>{
+        this.setState({
+            DialogOpen: false
+        })
     }
 
     render() {
@@ -47,6 +60,21 @@ class ProductPage extends Component {
                         : 'Loading'
                     }
                 </div>
+                {
+                    this.state.DialogOpen ?
+                        <Dialog open={this.state.DialogOpen}>
+                            <div className="dialog_alert cart_add_modal">
+                                <h1>Congratulations</h1>
+                                <p> You have successfuly added product to cart</p>
+                                <div className="bottom_btn">
+                                    <Link to="/user/cart">View Cart</Link>
+                                    <button onClick={this.closeModal}>Continue shoping</button>
+                                </div>
+                            </div>
+                        </Dialog>
+                        : null
+
+                }
             </div>
         );
     }
