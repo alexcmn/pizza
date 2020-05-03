@@ -238,21 +238,13 @@ class UserCart extends Component {
     }
 
     decreseItem = (id) => {
-        this.props.user.cartDetail.map(product =>{
-            if(product.quantity <= 1){
-                this.props.dispatch(removeCartItem(id)).then(() => {
-                    if (this.props.user.cartDetail.length <= 0) {
-                        this.setState({
-                            showTotal: false
-                        })
-                    } else {
-                        this.calculateTotal(this.props.user.cartDetail)
-                    }
-                });
-            }
-        })
-        this.props.dispatch(decreaseCartItem(id));
-        window.location.reload();
+        let obj = this.props.user.cartDetail.find(obj => obj._id == id);
+        if(obj.quantity === 1){
+            this.removeFromCart(id);
+        }else{
+            this.props.dispatch(decreaseCartItem(id));
+            window.location.reload();
+        }
     }
 
     render() {

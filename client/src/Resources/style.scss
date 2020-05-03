@@ -1099,3 +1099,23 @@ body {
         }
     }
 }
+
+.page_not_found{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 10rem 0;
+    .wrapp{
+        h1{
+            font-family: $f2;
+            color: $Dorange;
+            text-transform: uppercase;
+            font-size: 6em;
+        }
+        h3{
+            text-transform: uppercase;
+            color: $grey;
+        }
+    }
+}
